@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  qdrant:
+    container_name: qdrant-vector-db
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - ./qdrant_storage:/qdrant/storage:z
+    networks:
+      - app-network
+
+  postgres:
+    container_name: postgres-db
+    image: postgres:15
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data:z
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql  # Mount init script
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:
+#     driver: local

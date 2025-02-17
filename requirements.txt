@@ -1,0 +1,4 @@
+qdrant_client
+psycopg2-binary
+sentence-transformers
+python-dotenv
