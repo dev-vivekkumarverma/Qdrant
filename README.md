@@ -51,6 +51,12 @@ QDRANT_PORT=6333
 ```
 
 #### **3️⃣ Run Everything with a Single Command**
+change the chmod of the run.sh file
+```sh
+chmod +x run.sh
+```
+Execute the run.sh file
+ 
 ```sh
 ./run.sh
 ```
